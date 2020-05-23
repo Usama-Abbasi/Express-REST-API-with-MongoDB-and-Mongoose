@@ -9,8 +9,20 @@ router.use(bodyParser.json());
 
 var passport=require('passport');
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/',authenticate.verifyUser,authenticate.verifyAdmin,(req, res, next)=> {
+  User.find({})
+  .then((users)=>{
+    if(users!=null){
+      res.statusCode=200;
+      res.setHeader('Content-Type','application/json');
+      res.json(users);
+    }else{
+      err = new Error('User not founds');
+      err.status = 404;
+      return next(err); 
+    }
+  },(err)=>next(err))
+  .catch(err=>next(err));
 });
 
 router.post('/signup', (req, res, next) => {
