@@ -13,6 +13,8 @@ var usersRouter = require('./routes/users');
 var dishRouter = require('./routes/dishRouter');
 var promoRouter = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
+const uploadRouter = require('./routes/uploadRouter');
+
 var passport = require('passport');
 var authenticate = require('./authenticate');
 var config = require('./config');
@@ -44,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/dishes',dishRouter);
 app.use('/promotions',promoRouter);
 app.use('/leaders',leaderRouter);
+app.use('/imageUpload',uploadRouter);
 
 const url= config.mongoUrl;
 const connect=mongoose.connect(url);
