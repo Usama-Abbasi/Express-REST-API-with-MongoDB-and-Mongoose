@@ -15,6 +15,8 @@ var promoRouter = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
 const uploadRouter = require('./routes/uploadRouter');
 let favoriteRouter = require('./routes/favoriteRouter');
+var commentRouter = require('./routes/commentRouter');
+
 
 
 var passport = require('passport');
@@ -50,6 +52,8 @@ app.use('/promotions',promoRouter);
 app.use('/leaders',leaderRouter);
 app.use('/imageUpload',uploadRouter);
 app.use('/favorites', favoriteRouter);
+app.use('/comments',commentRouter);
+
 
 const url= config.mongoUrl;
 const connect=mongoose.connect(url);
